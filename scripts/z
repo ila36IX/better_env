@@ -12,7 +12,7 @@ check_if_fzf_exits()
 check_if_fzf_exits
 
 if [[ -z "$1" ]]; then
-	LAB_DIR=/mnt/d/filelab/
+	LAB_DIR=$HOME/lab/
 else
 	LAB_DIR=$1
 fi

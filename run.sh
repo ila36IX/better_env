@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 # Change directory to where the script is located
-SCRIPT_PATH=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+SCRIPT_PATH=$(dirname "${BASH_SOURCE[0]}")
+
+# Change directory to the script path
+pushd $SCRIPT_PATH >/dev/null
 # Run the executable file in your runs directory
 RUNS=$(find ./runs -maxdepth 1 -mindepth 1 -executable -type f)
 
@@ -47,6 +50,7 @@ done
 
 # Add alies of this script
 SHELLRC_FILE="$HOME/.$(basename $SHELL)rc"
+
 LINE="alias update_dev=$SCRIPT_PATH/run.sh"
 
 append_to_file () {
@@ -58,3 +62,4 @@ append_to_file () {
 if ! grep -q "^$LINE" $SHELLRC_FILE; then
 	execute append_to_file "$LINE" "$SHELLRC_FILE"
 fi
+popd >/dev/null

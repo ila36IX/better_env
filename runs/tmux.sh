@@ -5,10 +5,11 @@ print_error() {
 }
 
 log () {
+	curr_file=$(basename $0)
 	if [[ "${DRY}" == "1" ]]; then
-		echo "[DRY_RUN]: ${@}"
+		echo "[DRY_RUN/$curr_file]: ${@}"
 	else
-		echo "[EXECUTE]: ${@}"
+		echo "[EXECUTE/$curr_file]: ${@}"
 	fi
 }
 
@@ -31,6 +32,8 @@ while [[ ${#} > 0 ]]; do
 done
 
 pushd dotfiles > /dev/null
+# Install plugin manger
+execute git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 execute cp ".tmux.conf" "$HOME"
-execute pwd
+execute tmux source ~/.tmux.conf
 popd > /dev/null
