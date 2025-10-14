@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
+# This script will copy all the user defined scripts into the a directory what
+# is included in the PATH
+# The user diefinded scripts are located in scripts folder
+
 print_error() {
-	printf "Error: %s\n" "${*}" 1>&2
+	ARGUMENTS=${*}
+	printf "Error: %s\n" "$ARGUMENTS" 1>&2
 }
 
 log () {

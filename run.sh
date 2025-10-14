@@ -56,7 +56,7 @@ LINE="alias update_dev=$SCRIPT_PATH/run.sh"
 append_to_file () {
 	content=$1
 	file_path=$2
-	echo "$1" >> "$2"
+	echo "$content" >> "$file_path"
 }
 
 if ! grep -q "^$LINE" $SHELLRC_FILE; then
