@@ -27,9 +27,8 @@ fi
 FILE_LAB_DIRS=$(find $LAB_DIR -maxdepth 2 -not \( -path '*/.git*' -prune \) -not \( -path '*/node_modules*' -prune \) -type d -print)
 CUSTOM_DIR="
 $HOME/.config/nvim
-$HOME/goinfre/repos/
 "
-SELECTED_DIR=$(echo "$FILE_LAB_DIRS" "$CUSTOM_DIR" | fzf)
+SELECTED_DIR=$(echo "$FILE_LAB_DIRS$CUSTOM_DIR" | fzf)
 
 # Nothing selected
 if [[ -z "$SELECTED_DIR" ]]; then
