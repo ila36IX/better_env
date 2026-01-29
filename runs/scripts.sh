@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Copy custom executabes into ~/scripts
+echo "[INFO] Copy scripts files into ~/scripts and add it to PATH"
 
 mkdir -p "$HOME/scripts"
 cp -rf ./scripts/* "$HOME/scripts/"

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# clangd and clang tidy confugerations
+
+echo "[INFO] Copy clangd and clang tidy confugerations to ~/config/clangd"
 
 pushd dotfiles > /dev/null
 
