@@ -6,17 +6,26 @@ SCRIPT_PATH=$(dirname "${BASH_SOURCE[0]}")
 # Change directory to the script path
 pushd $SCRIPT_PATH >/dev/null
 
-# Execute all the executables inside runs directory
-for RUN in $(find ./runs -maxdepth 1 -mindepth 1 -executable -type f); do
-	echo "[EXECUTE] $RUN"
-	$RUN
-done 
-
-# Add udate_dev alies to shellrc(bashrc or zshrc)
-LINE="alias update_dev=$(pwd)/run.sh"
-SHELLRC_FILE="$HOME/.$(basename $SHELL)rc"
-if ! grep -q "^$LINE" $SHELLRC_FILE; then
-	echo "$LINE" >> "$SHELLRC_FILE"
+if [ $# -ne 1 ] || [ -z "$1" ]; then
+    echo "Usage: $0 <all/script_name>" >&2
+    echo "Available ones are:"
+    ls -1 runs
+    popd >/dev/null
+    exit 1
 fi
+
+TARGET_SCRIPT="./runs/$1"
+
+# Verify that the target script exists and is an executable file
+if [ ! -f "$TARGET_SCRIPT" ] || [ ! -x "$TARGET_SCRIPT" ]; then
+    echo "Error: Script '$1' not found or not executable in ./runs/" >&2
+    echo "Available ones are:"
+    ls -1 runs
+    popd >/dev/null
+    exit 1
+fi
+
+# Execute the script
+"$TARGET_SCRIPT"
 
 popd >/dev/null

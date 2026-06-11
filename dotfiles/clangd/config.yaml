@@ -142,6 +142,11 @@ Diagnostics:
       - readability-string-compare
       - readability-uniqueptr-delete-release
       - readability-use-anyofallof
+    CheckOptions:
+        # Classes are PascalCase
+       key:             readability-identifier-naming.ClassCase
+       value:           PascalCase
+
   UnusedIncludes: None
 
 
